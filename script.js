@@ -12,11 +12,25 @@ let dinoX = 50;
 let dinoY = boardHeight - dinoHeight;
 let dinoImg;
 
+//Game-over
+let overWidth = 386;
+let overHeight = 40;
+let overX = 182;
+let overY = 105;
+let overImg;
+
 let dino = {
     x : dinoX,
     y : dinoY,
     width : dinoWidth,
     height : dinoHeight
+}
+
+let over = {
+    x : overX,
+    y : overY,
+    width : overWidth,
+    height : overHeight
 }
 
 //cactus
@@ -67,7 +81,13 @@ window.onload = function() {
 
     cactus3Img = new Image();
     cactus3Img.src = "./img/cactus3.png";
-
+    
+    overImg = new Image();
+    overImg.src = "./img/game-over.png";
+    
+    resetImg = new Image();
+    resetImg.src = "./img/reset.png";
+    
     requestAnimationFrame(update);
     setInterval(placeCactus, 1000); //1000 milliseconds = 1 second
     document.addEventListener("keydown", moveDino);
@@ -94,8 +114,13 @@ function update() {
         if (detectCollision(dino, cactus)) {
             gameOver = true;
             dinoImg.src = "./img/dino-dead.png";
+            resetImg.src = "./img/reset.png";
+            overImg.src = "./img/game-over.png";
             dinoImg.onload = function() {
                 context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
+            }
+            overImg.onload = function() {
+                context.drawImage(overImg,over.x,over.y,over.width,over.height);
             }
         }
     }
@@ -104,7 +129,7 @@ function update() {
     context.fillStyle="black";
     context.font="20px courier";
     score++;
-    context.fillText(score, 5, 20);
+    context.fillText(score,700, 40);
 }
 
 function moveDino(e) {
