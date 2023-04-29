@@ -37,7 +37,7 @@ let cactus3Img;
 //physics
 let velocityX = -8; //cactus moving left speed
 let velocityY = 0;
-let gravity = .4;
+let gravity = .5;
 
 let gameOver = false;
 let score = 0;
@@ -114,7 +114,7 @@ function moveDino(e) {
 
     if ((e.code == "Space" || e.code == "ArrowUp") && dino.y == dinoY) {
         //jump
-        velocityY = -10;
+        velocityY = -12;
     }
 
 }
