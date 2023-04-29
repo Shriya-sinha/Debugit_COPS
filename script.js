@@ -19,6 +19,12 @@ let overX = 182;
 let overY = 105;
 let overImg;
 
+let reWidth = 76;
+let reHeigth = 68;
+let reX = 337;
+let reY = 150;
+let resetImg;
+
 let dino = {
     x : dinoX,
     y : dinoY,
@@ -32,6 +38,13 @@ let over = {
     width : overWidth,
     height : overHeight
 }
+
+let reset = {
+    x : reX,
+    y : reY,
+    width : reWidth,
+    height : reHeight
+}    
 
 //cactus
 let cactusArray = [];
@@ -51,7 +64,7 @@ let cactus3Img;
 //physics
 let velocityX = -8; //cactus moving left speed
 let velocityY = 0;
-let gravity = .5;
+let gravity = .6;
 
 let gameOver = false;
 let score = 0;
@@ -130,6 +143,16 @@ function update() {
     context.font="20px courier";
     score++;
     context.fillText(score,700, 40);
+    
+    if (score <= 500) {
+        velocityX = -8;
+    }
+    else if (score>500 && score <=1000) {
+        velocityX = -10;
+    }    
+    else {
+        velocityX = -15;
+    }
 }
 
 function moveDino(e) {
@@ -139,7 +162,7 @@ function moveDino(e) {
 
     if ((e.code == "Space" || e.code == "ArrowUp") && dino.y == dinoY) {
         //jump
-        velocityY = -12;
+        velocityY = -14;
     }
 
 }
